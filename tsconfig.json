@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["es6", "dom", "dom.iterable", "esnext"],
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -20,6 +19,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": "src",
+
     "paths": {
       "components*": ["./components*"],
       "routes*": ["./routes*"],
@@ -30,10 +30,8 @@
       "types*": ["./types*"],
       "styles*": ["./styles*"],
       "UI*": ["./UI*"],
-      "store*": ["./store*"],
+      "store*": ["./store*"]
     }
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }
