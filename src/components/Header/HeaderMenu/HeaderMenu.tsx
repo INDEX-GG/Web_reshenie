@@ -3,17 +3,47 @@ import { styled, alpha } from "@mui/material/styles";
 import Menu, { MenuProps } from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Button } from "@mui/material";
+import { Box } from "@mui/system";
+import UpArrowIcon from "assets/icon/UpArrowIcon";
+import DownArrowIcon from "assets/icon/DownArrowIcon";
+
+function createData(id: number, body: string) {
+  return { id, body };
+}
+const data = [
+  createData(1, "Lorem ipsum dolor sit amet, consectetur adi..."),
+  createData(2, "Lorem ipsum dolor sit amet, consectetur adi..."),
+  createData(3, "Lorem ipsum dolor sit amet, consectetur adi..."),
+  createData(4, "Lorem ipsum dolor sit amet, consectetur adi..."),
+  createData(5, "Lorem ipsum dolor sit amet, consectetur adi..."),
+  createData(6, "Lorem ipsum dolor sit amet, consectetur adi..."),
+  createData(7, "Lorem ipsum dolor sit amet, consectetur adi..."),
+  createData(8, "Lorem ipsum dolor sit amet, consectetur adi..."),
+  createData(9, "Lorem ipsum dolor sit amet, consectetur adi..."),
+];
+
+const MenuMUI = styled(Menu)({
+  maxWidth: "400px",
+  maxHeight: "700px",
+});
+const ButtonMUI = styled(Button)({
+  color: "#AAAAAA",
+  background: "none",
+  "&: hover": {
+    background: "none",
+  },
+});
 
 const StyledMenu = styled((props: MenuProps) => (
-  <Menu
+  <MenuMUI
     elevation={0}
     anchorOrigin={{
       vertical: "bottom",
-      horizontal: "center",
+      horizontal: "left",
     }}
     transformOrigin={{
       vertical: "top",
-      horizontal: "center",
+      horizontal: "left",
     }}
     {...props}
   />
@@ -22,9 +52,11 @@ const StyledMenu = styled((props: MenuProps) => (
     borderRadius: 6,
     marginTop: theme.spacing(1),
     minWidth: 180,
-    color: "red",
+    fontWeight: "400",
+    fontSize: "16px",
     boxShadow:
       "rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px",
+
     "& .MuiMenu-list": {
       padding: "4px 0",
     },
@@ -42,6 +74,11 @@ const StyledMenu = styled((props: MenuProps) => (
       },
     },
   },
+  [theme.breakpoints.between(0, 1400)]: {
+    "& .MuiPaper-root": {
+      fontSize: "14px",
+    },
+  },
 }));
 
 const HeaderMenu = () => {
@@ -56,22 +93,19 @@ const HeaderMenu = () => {
 
   return (
     <div>
-      <Button
+      <ButtonMUI
         id="demo-customized-button"
         aria-controls={open ? "demo-customized-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         variant="contained"
         disableElevation
-        onClick={handleClick}
-        sx={{
-          fontSize: { xs: "14px", lg: "16px" },
-          color: "#AAAAAA",
-          background: "none",
-          fontWeight: "600",
-        }}>
+        onClick={handleClick}>
         Склад отгрузки
-      </Button>
+        <Box sx={{ margin: " 0px 0px 5px 5px " }}>
+          {open ? <UpArrowIcon /> : <DownArrowIcon />}
+        </Box>
+      </ButtonMUI>
       <StyledMenu
         id="demo-customized-menu"
         MenuListProps={{
@@ -80,9 +114,11 @@ const HeaderMenu = () => {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}>
-        <MenuItem onClick={handleClose} disableRipple>
-          <p>sasdas</p>
-        </MenuItem>
+        {data.map((item) => (
+          <MenuItem onClick={handleClose} disableRipple key={item.id}>
+            {item.body}
+          </MenuItem>
+        ))}
       </StyledMenu>
     </div>
   );
