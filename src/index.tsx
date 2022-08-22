@@ -16,9 +16,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <ThemeProvider theme={themeObj}>
-          <App />
-        </ThemeProvider>
+        {/* <ThemeProvider theme={themeObj}> */}
+        <App />
+        {/* </ThemeProvider> */}
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,

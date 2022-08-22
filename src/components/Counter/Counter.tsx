@@ -2,6 +2,7 @@ import React from "react";
 import { useCounterStore } from "../../hooks/useStoreHooks/useCounterStore/useCounterStore";
 import { useCustomRouter } from "../../hooks/useCustomRouter";
 import TestIcon from "assets/icon/TestIcon";
+import DownloadIcon from "assets/icon/DownloadIcon";
 
 const Counter = () => {
   const { handlePushTo } = useCustomRouter();
@@ -14,6 +15,7 @@ const Counter = () => {
       <button onClick={handleDownCounter}>-1</button>
       <h1>Wrok Icon in TSX COMPONENT</h1>
       <TestIcon />
+      <DownloadIcon />
       <h1>Work React Router Dom</h1>
       <button onClick={handlePushTo("ozon")}>navigate to ozon</button>
     </div>

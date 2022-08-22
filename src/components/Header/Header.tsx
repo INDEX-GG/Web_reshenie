@@ -11,42 +11,66 @@ import HeaderDownXLS from "./HeaderDownXLS/HeaderDownXLS";
 import HeaderDownload from "./HeaderDownload/HeaderDownload";
 import HeaderUnloading from "./HeaderUnloading/HeaderUnloading";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
+// const Item = styled(Paper)(({ theme }) => ({
+//   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+//   ...theme.typography.body2,
+//   padding: theme.spacing(1),
+//   textAlign: "center",
+//   color: theme.palette.text.secondary,
+// }));
+
+const HeaderWrapUI = styled("div")(({ theme }) => ({
+  width: "100%",
+  display: "flex",
+}));
+const HeaderLeftUI = styled("div")(({ theme }) => ({
+  width: "30%",
+  display: "flex",
+  justifyContent: "center",
+  [theme.breakpoints.down("lg")]: {
+    width: "20%",
+  },
+}));
+const HeaderCenter = styled("div")(({ theme }) => ({
+  width: "40%",
+  display: "flex",
+  justifyContent: "space-evenly",
+  alignItems: "center",
+  [theme.breakpoints.down("lg")]: {
+    width: "60%",
+  },
+}));
+const HeaderRightUI = styled("div")(({ theme }) => ({
+  width: "30%",
+  display: "flex",
+  justifyContent: "center",
+
+  alignItems: "center",
+  [theme.breakpoints.down("lg")]: {
+    width: "20%",
+  },
 }));
 
 const Header = () => {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <Grid container xs>
-            <Grid xs>
-              <HeaderTabPanel />
-            </Grid>
-            <Grid xs>
-              <HeaderMenu />
-            </Grid>
-            <Grid xs>
-              <HeaderInventory />
-            </Grid>
-            <Grid xs>
-              <HeaderDownXLS />
-            </Grid>
-            <Grid xs>
-              <HeaderDownload />
-            </Grid>
-            <Grid xs>
-              <HeaderUnloading />
-            </Grid>
-          </Grid>
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <AppBar position="static">
+      <Toolbar sx={{ background: "white" }}>
+        <HeaderWrapUI>
+          <HeaderLeftUI>
+            <HeaderTabPanel />
+          </HeaderLeftUI>
+          <HeaderCenter>
+            <HeaderMenu />
+            <HeaderInventory />
+            <HeaderDownXLS />
+          </HeaderCenter>
+          <HeaderRightUI>
+            <HeaderDownload />
+            <HeaderUnloading />
+          </HeaderRightUI>
+        </HeaderWrapUI>
+      </Toolbar>
+    </AppBar>
   );
 };
 
