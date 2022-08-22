@@ -1,3 +1,4 @@
+import Header from "components/Header/Header";
 import React from "react";
 
 interface IMMainLayoutProps {
@@ -7,7 +8,9 @@ interface IMMainLayoutProps {
 const MainLayout = ({ children }: IMMainLayoutProps) => {
   return (
     <>
-      <header>header</header>
+      <header>
+        <Header />
+      </header>
       <main>{children}</main>
       <footer>footer</footer>
     </>
