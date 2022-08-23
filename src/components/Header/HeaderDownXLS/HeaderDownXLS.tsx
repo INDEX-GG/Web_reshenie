@@ -1,15 +1,13 @@
 import React from "react";
 import { Box } from "@mui/system";
-import { IconButton, Typography } from "@mui/material";
+import { IconButton } from "@mui/material";
 import DownloadIcon from "assets/icon/DownloadIcon";
+import { HeaderTypography } from "../style";
 
 const HeaderDownXLS = () => {
   return (
     <Box sx={{ display: "flex", alignItems: "center" }}>
-      <Typography
-        sx={{ marginRight: "10px", color: "#AAAAAA", fontWeight: "600" }}>
-        Документ.xls
-      </Typography>
+      <HeaderTypography>Документ.xls</HeaderTypography>
       <IconButton
         color="primary"
         aria-label="upload picture"

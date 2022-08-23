@@ -17,14 +17,14 @@ const HeaderTabPanel = () => {
         label="Яндекс"
         to="/yandex"
         component={Link}
-        sx={{ fontWeight: "500", fontSize: "16px" }}
+        sx={{ fontWeight: "600", fontSize: "16px" }}
       />
       <Tab
         value="ozon"
         label="OZON"
         to="/ozon"
         component={Link}
-        sx={{ fontWeight: "500", fontSize: "16px" }}
+        sx={{ fontWeight: "600", fontSize: "16px" }}
       />
     </Tabs>
   );

@@ -26,13 +26,19 @@ const MenuMUI = styled(Menu)({
   maxWidth: "400px",
   maxHeight: "700px",
 });
-const ButtonMUI = styled(Button)({
+const ButtonMUI = styled(Button)(({ theme }) => ({
   color: "#AAAAAA",
+  fontWeight: "500",
+  fontSize: "15px",
+  fontFamily: "Roboto",
   background: "none",
   "&: hover": {
     background: "none",
   },
-});
+  [theme.breakpoints.down(1400)]: {
+    fontSize: "14px",
+  },
+}));
 
 const StyledMenu = styled((props: MenuProps) => (
   <MenuMUI

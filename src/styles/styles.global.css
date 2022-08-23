@@ -9,7 +9,18 @@ body {
   font-weight: 400;
   font-size: 16px;
 }
+*::-webkit-scrollbar {
+  width: 10px;
+}
 
+*::-webkit-scrollbar-track {
+  -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+  background-color: #f9f9fd;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #4c7ca3;
+}
 *,
 *::after,
 *::before {
