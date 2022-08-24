@@ -1,6 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "store/store";
-import { CombineTypes } from "store/types";
 import { getDataThunk } from "./tableSliceAPI/tableSliceAPI";
 
 export interface dataItem {
@@ -66,8 +64,4 @@ const tableSlice = createSlice({
   },
 });
 
-const selectCounterSlice = (state: RootState) => state[CombineTypes.COUNTER];
-export const selectCounter = (state: RootState) => selectCounterSlice(state);
-
-// export const { increment, decrement } = tableSlice.actions;
 export default tableSlice;

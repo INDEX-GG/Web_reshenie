@@ -1,13 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { dataItem } from "../counterSlice";
+import { dataItem } from "../tableSlice";
 
 export const getDataThunk = createAsyncThunk(
   "tableSlice/getData",
-  async (_, thunkAPI) => {
+  async ({ marketplace }: any, thunkAPI) => {
     try {
       const response = await axios.get<dataItem[]>(
-        "http://192.168.145.195:5998/api/table/upload/?code=yandex",
+        `http://192.168.145.195:5998/api/table/upload/?code=${marketplace}`,
       );
       return response.data;
     } catch (error) {

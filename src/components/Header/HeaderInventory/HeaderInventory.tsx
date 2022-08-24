@@ -1,5 +1,13 @@
 import React from "react";
-import { styled, Typography } from "@mui/material";
+import {
+  buttonClasses,
+  Input,
+  inputClasses,
+  styled,
+  TextField,
+  Typography,
+} from "@mui/material";
+import HeaderInventoryInput from "./HeaderInventoryInput/HeaderInventoryInput";
 
 const HeaderInventoryWrap = styled("div")(({ theme }) => ({
   display: "flex",
@@ -19,12 +27,22 @@ const HeaderInventoryTypography = styled(Typography)(({ theme }) => ({
     fontSize: "16px",
   },
 }));
+// const InputHeader = styled(Input)({
+//   [`&.${inputClasses.input}`]: {
+//     // textAlign: "center",
+//     textAlign: "center",
+//   },
+// });
 
 const HeaderInventory = () => {
   return (
     <HeaderInventoryWrap>
       <HeaderInventoryTypography>Запас товара</HeaderInventoryTypography>
-      <HeaderInventoryContainer></HeaderInventoryContainer>
+      <HeaderInventoryContainer>
+        {/* <InputHeader /> */}
+        {/* <input type="text" /> */}
+        {/* <HeaderInventoryInput /> */}
+      </HeaderInventoryContainer>
     </HeaderInventoryWrap>
   );
 };
