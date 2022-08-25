@@ -1,12 +1,12 @@
 import { webReshenieAxios } from "./../../../../lib/http/index";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { dataItem } from "../tableSlice";
+import { IdataItem } from "types/types";
 
 export const getDataThunk = createAsyncThunk(
   "tableSlice/getData",
   async ({ resultKode }: any, thunkAPI) => {
     try {
-      const response = await webReshenieAxios.get<dataItem[]>(
+      const response = await webReshenieAxios.get<IdataItem[]>(
         `/api/table/upload/?code=${resultKode}`,
       );
       return response.data;

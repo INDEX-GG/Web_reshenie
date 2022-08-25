@@ -4,9 +4,7 @@ import { IconButton } from "@mui/material";
 import DownloadIcon from "assets/icon/DownloadIcon";
 import { HeaderTypography } from "../style";
 import { useAppDispatch, useAppSelector } from "../../../hooks/useAppStore";
-import { useForm } from "react-hook-form";
 import { webReshenieAxios } from "lib/http";
-import { postBooksThunk } from "store/reducers/booksSlice/booksSliceAPI/booksSliceAPI";
 import { getDataThunk } from "store/reducers/tableSlice/tableSliceAPI/tableSliceAPI";
 
 const IconSX = {
@@ -35,15 +33,13 @@ const HeaderDownXLS = () => {
       formData.append("stock", stock);
       formData.append("stock_days", String(stock_days));
 
+      //~~~~~~//
+
       const response = await webReshenieAxios.post(
         "/api/table/upload/",
         formData,
       );
-      // // code
       dispatch(getDataThunk(response.data));
-      // console.log(response.data);
-
-      // dispatch(postBooksThunk(formData));
     }
   };
 

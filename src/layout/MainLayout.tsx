@@ -11,7 +11,7 @@ const MainLayout = ({ children }: IMMainLayoutProps) => {
       <header>
         <Header />
       </header>
-      <main style={{ marginTop: "30px" }}>{children}</main>
+      <main style={{ marginTop: "10px" }}>{children}</main>
     </>
   );
 };

@@ -5,7 +5,7 @@ const ButtonDownload = styled(Button)(({ theme }) => ({
   fontWeight: "500",
   fontSize: "14px",
   marginRight: "15px",
-  minWidth: "98px",
+  minWidth: "128px",
 
   [theme.breakpoints.down(1400)]: {
     fontSize: "12px",
