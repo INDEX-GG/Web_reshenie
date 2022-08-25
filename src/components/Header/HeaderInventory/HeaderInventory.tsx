@@ -1,16 +1,33 @@
 import React from "react";
-import { Box } from "@mui/system";
-import { Typography } from "@mui/material";
+import { styled, Typography } from "@mui/material";
+import HeaderInventoryInput from "./HeaderInventoryInput/HeaderInventoryInput";
 
+const HeaderInventoryWrap = styled("div")({
+  display: "flex",
+  alignItems: "center",
+});
+const HeaderInventoryContainer = styled("div")({
+  width: "86px",
+  height: "35px",
+  background: " #E8E8E8",
+});
+const HeaderInventoryTypography = styled(Typography)(({ theme }) => ({
+  marginRight: "10px",
+  color: "#AAAAAA",
+  fontWeight: "500",
+  fontSize: "18px",
+  [theme.breakpoints.down(1400)]: {
+    fontSize: "16px",
+  },
+}));
 const HeaderInventory = () => {
   return (
-    <Box sx={{ display: "flex", alignItems: "center" }}>
-      <Typography
-        sx={{ marginRight: "10px", color: "#AAAAAA", fontWeight: "600" }}>
-        Запас товара
-      </Typography>
-      <Box sx={{ width: "86px", height: "35px", bgcolor: " #E8E8E8" }}></Box>
-    </Box>
+    <HeaderInventoryWrap>
+      <HeaderInventoryTypography>Запас товара</HeaderInventoryTypography>
+      <HeaderInventoryContainer>
+        <HeaderInventoryInput />
+      </HeaderInventoryContainer>
+    </HeaderInventoryWrap>
   );
 };
 

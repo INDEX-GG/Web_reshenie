@@ -2,37 +2,40 @@ import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import Menu, { MenuProps } from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { Button } from "@mui/material";
+import { Button, Tooltip } from "@mui/material";
 import { Box } from "@mui/system";
 import UpArrowIcon from "assets/icon/UpArrowIcon";
 import DownArrowIcon from "assets/icon/DownArrowIcon";
+import { useAppDispatch } from "../../../hooks/useAppStore";
+import { pushDataStockDays } from "store/reducers/booksSlice/booksSlice";
 
 function createData(id: number, body: string) {
   return { id, body };
 }
 const data = [
-  createData(1, "Lorem ipsum dolor sit amet, consectetur adi..."),
-  createData(2, "Lorem ipsum dolor sit amet, consectetur adi..."),
-  createData(3, "Lorem ipsum dolor sit amet, consectetur adi..."),
-  createData(4, "Lorem ipsum dolor sit amet, consectetur adi..."),
-  createData(5, "Lorem ipsum dolor sit amet, consectetur adi..."),
-  createData(6, "Lorem ipsum dolor sit amet, consectetur adi..."),
-  createData(7, "Lorem ipsum dolor sit amet, consectetur adi..."),
-  createData(8, "Lorem ipsum dolor sit amet, consectetur adi..."),
-  createData(9, "Lorem ipsum dolor sit amet, consectetur adi..."),
+  createData(1, "РЦ"),
+  createData(2, "МСКС"),
+  createData(3, "Самара"),
 ];
 
 const MenuMUI = styled(Menu)({
   maxWidth: "400px",
-  maxHeight: "700px",
+  maxHeight: "400px",
 });
-const ButtonMUI = styled(Button)({
+const MenuItemMUI = styled(MenuItem)({});
+const ButtonMUI = styled(Button)(({ theme }) => ({
   color: "#AAAAAA",
+  fontWeight: "500",
+  fontSize: "15px",
+  fontFamily: "Roboto",
   background: "none",
   "&: hover": {
     background: "none",
   },
-});
+  [theme.breakpoints.down(1400)]: {
+    fontSize: "14px",
+  },
+}));
 
 const StyledMenu = styled((props: MenuProps) => (
   <MenuMUI
@@ -82,12 +85,18 @@ const StyledMenu = styled((props: MenuProps) => (
 }));
 
 const HeaderMenu = () => {
+  const dispatch = useAppDispatch();
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleClickMenu = (id: number) => {
+    dispatch(pushDataStockDays(id));
     setAnchorEl(null);
   };
 
@@ -108,14 +117,14 @@ const HeaderMenu = () => {
       </ButtonMUI>
       <StyledMenu
         id="demo-customized-menu"
-        MenuListProps={{
-          "aria-labelledby": "demo-customized-button",
-        }}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}>
         {data.map((item) => (
-          <MenuItem onClick={handleClose} disableRipple key={item.id}>
+          <MenuItem
+            key={item.id}
+            onClick={() => handleClickMenu(item.id)}
+            disableRipple>
             {item.body}
           </MenuItem>
         ))}
