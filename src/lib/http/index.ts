@@ -10,4 +10,4 @@ export const createApi = () => {
   return api;
 };
 
-export const CastomAxios = createApi();
+export const webReshenieAxios = createApi();

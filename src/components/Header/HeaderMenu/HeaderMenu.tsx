@@ -13,23 +13,9 @@ function createData(id: number, body: string) {
   return { id, body };
 }
 const data = [
-  createData(
-    1,
-    "Lorem ipsum dolor sit amet, consectetur adidsfksdlfksd;fkskf;sf;lsdkfsdkf;lsd;lfsd",
-  ),
-  createData(2, "Lorem ipsum dolor sit amet, consectetur adi..."),
-  createData(3, "Lorem ipsum dolor sit amet, consectetur adi..."),
-  createData(4, "Lorem ipsum dolor sit amet, consectetur adi..."),
-  createData(5, "Lorem ipsum dolor sit amet, consectetur adi..."),
-  createData(6, "Lorem ipsum dolor sit amet, consectetur adi..."),
-  createData(7, "Lorem ipsum dolor sit amet, consectetur adi..."),
-  createData(8, "Lorem ipsum dolor sit amet, consectetur adi..."),
-  createData(9, "Lorem ipsum dolor sit amet, consectetur adi..."),
-  createData(10, "Lorem ipsum dolor sit amet, consectetur adi..."),
-  createData(11, "Lorem ipsum dolor sit amet, consectetur adi..."),
-  createData(12, "Lorem ipsum dolor sit amet, consectetur adi..."),
-  createData(13, "Lorem ipsum dolor sit amet, consectetur adi..."),
-  createData(14, "Lorem ipsum dolor sit amet, consectetur adi..."),
+  createData(1, "РЦ"),
+  createData(2, "МСКС"),
+  createData(3, "Самара"),
 ];
 
 const MenuMUI = styled(Menu)({
@@ -135,13 +121,12 @@ const HeaderMenu = () => {
         open={open}
         onClose={handleClose}>
         {data.map((item) => (
-          <Box key={item.id}>
-            <Tooltip title={item.body} placement="top-end">
-              <MenuItem onClick={() => handleClickMenu(item.id)} disableRipple>
-                {item.body}
-              </MenuItem>
-            </Tooltip>
-          </Box>
+          <MenuItem
+            key={item.id}
+            onClick={() => handleClickMenu(item.id)}
+            disableRipple>
+            {item.body}
+          </MenuItem>
         ))}
       </StyledMenu>
     </div>

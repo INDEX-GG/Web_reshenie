@@ -2,21 +2,17 @@ import { Input } from "@mui/material";
 import { styled } from "@mui/system";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import { pushDataStock } from "store/reducers/booksSlice/booksSlice";
-import { useAppDispatch } from "../../../../hooks/useAppStore";
+import { setNewData } from "store/reducers/tableSlice/tableSlice";
+import { useAppDispatch } from "../../hooks/useAppStore";
 
-const InputMUI = styled(Input)({
-  "& .MuiInput-input": {
-    textAlign: "center",
-  },
-});
+const InputMUI = styled(Input)({});
 
-const HeaderInventoryInput = () => {
+const OzonInput = ({ defaultValue }: any) => {
   const dispatch = useAppDispatch();
   const { control } = useForm();
 
   const onChengeState = (e: any, onChange: (srt: string) => void) => {
-    dispatch(pushDataStock(e.target.value));
+    dispatch(setNewData(e.target.value));
     onChange(e.target.value);
   };
 
@@ -25,7 +21,7 @@ const HeaderInventoryInput = () => {
       <Controller
         name="Input"
         control={control}
-        defaultValue=""
+        defaultValue={defaultValue}
         render={({ field: { value, onChange } }) => {
           return (
             <InputMUI
@@ -39,4 +35,4 @@ const HeaderInventoryInput = () => {
   );
 };
 
-export default React.memo(HeaderInventoryInput);
+export default React.memo(OzonInput);

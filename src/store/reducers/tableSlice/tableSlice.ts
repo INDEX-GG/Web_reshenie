@@ -48,7 +48,11 @@ const initialState: IInitialState = {
 const tableSlice = createSlice({
   name: "tableSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    setNewData(state, action: PayloadAction<dataItem[]>) {
+      state.data.result = action.payload;
+    },
+  },
   extraReducers: {
     [getDataThunk.fulfilled.type](state, action) {
       state.data = action.payload;
@@ -63,5 +67,5 @@ const tableSlice = createSlice({
     },
   },
 });
-
+export const { setNewData } = tableSlice.actions;
 export default tableSlice;

@@ -13,7 +13,7 @@ const ButtonDownload = styled(Button)(({ theme }) => ({
 }));
 
 const HeaderDownload = () => {
-  return <ButtonDownload variant="contained">Сохранить</ButtonDownload>;
+  return <ButtonDownload variant="contained">Отправить</ButtonDownload>;
 };
 
 export default HeaderDownload;

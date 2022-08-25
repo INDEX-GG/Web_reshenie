@@ -7,10 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import styled from "@emotion/styled";
-import { useAppDispatch } from "../../hooks/useAppStore";
 import { useAppSelector } from "../../hooks/useAppStore";
-import { getDataThunk } from "store/reducers/tableSlice/tableSliceAPI/tableSliceAPI";
-import axios from "axios";
 
 const TableCellUI = styled(TableCell)({
   [`&.${tableCellClasses.head}`]: {
@@ -49,7 +46,7 @@ const TableBlockTopLeftMUI = styled("div")({
   position: "fixed",
   background: "white",
   border: "none",
-  paddingBottom: "30px",
+  paddingBottom: "25px",
   maxWidth: "551px",
 });
 const TableBlockLeftMUI = styled("div")({
@@ -64,29 +61,16 @@ const TableBlockRightMUI = styled("div")({
 });
 
 const Yandex = () => {
-  const dispatch = useAppDispatch();
   const { data, isLoading, error } = useAppSelector((state) => state.TABLE);
-  React.useEffect(() => {
-    dispatch(getDataThunk("Yandex"));
-  }, []);
 
-  const HandelTest = () => {
-    axios
-      .post("http://192.168.145.195:5998/api/table/upload/", {
-        marketplace: "yandex",
-        stock_days: "5",
-        stock: "jiojio",
-        table:
-          "@Ozon-postavki-_-kopiya.xlsx;type=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      })
-      .then((res) => console.log("response", res));
-  };
   if (isLoading) {
     <h1>Loading...</h1>;
   }
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table
+        sx={{ minWidth: 650, minHeight: "calc(100vh - 104px)" }}
+        aria-label="simple table">
         {error}
         <TableHead>
           <TableRow>
@@ -103,6 +87,7 @@ const Yandex = () => {
               <TableCellUI>Май</TableCellUI>
               <TableCellUI>Июнь</TableCellUI>
               <TableCellUI>Июль</TableCellUI>
+              <TableCellUI>Август</TableCellUI>
               <TableCellUI>ABC Segment (beta)</TableCellUI>
               <TableCellUI>Продажи в текущем месяце</TableCellUI>
               <TableCellUI>Текущие продажи(F BO)</TableCellUI>
@@ -146,6 +131,7 @@ const Yandex = () => {
                 <TableCellUI align="right">{item.may}</TableCellUI>
                 <TableCellUI align="right">{item.june}</TableCellUI>
                 <TableCellUI align="right">{item.july}</TableCellUI>
+                <TableCellUI align="right">{item.august}</TableCellUI>
                 <TableCellUI align="right">{item.abc_segment}</TableCellUI>
                 <TableCellUI align="right">{item.sales_month}</TableCellUI>
                 <TableCellUI align="right">
