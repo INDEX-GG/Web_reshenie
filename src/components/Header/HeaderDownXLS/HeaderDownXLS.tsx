@@ -16,7 +16,7 @@ const IconSX = {
 };
 
 const HeaderDownXLS = () => {
-  const { marketplace, stock_days, stock } = useAppSelector(
+  const { marketplace, stock_days, stock, marketplace_stock } = useAppSelector(
     (state) => state.BOOKS,
   );
   const dispatch = useAppDispatch();
@@ -25,20 +25,24 @@ const HeaderDownXLS = () => {
     event: ChangeEvent<HTMLInputElement>,
   ) => {
     const { files } = event.target;
+    console.log(files);
+
     if (files?.length) {
       const fileList: File[] = Array.from(files);
       const formData = new FormData();
       formData.append("marketplace", marketplace);
-      formData.append("table", fileList[0]);
-      formData.append("stock", stock);
-      formData.append("stock_days", String(stock_days));
-
+      formData.append("stock_days", stock);
+      formData.append("our_stock", String(stock_days));
+      formData.append("marketplace_stock", marketplace_stock);
+      formData.append("stock_table", fileList[0]);
+      formData.append("products_table", fileList[0]);
       //~~~~~~//
-
       const response = await webReshenieAxios.post(
         "/api/table/upload/",
         formData,
       );
+      // console.log(response.data);
+
       dispatch(getDataThunk(response.data));
     }
   };

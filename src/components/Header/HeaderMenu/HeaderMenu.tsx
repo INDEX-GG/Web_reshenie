@@ -1,22 +1,18 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import Menu, { MenuProps } from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { Button, Tooltip } from "@mui/material";
+import { Button } from "@mui/material";
 import { Box } from "@mui/system";
 import UpArrowIcon from "assets/icon/UpArrowIcon";
 import DownArrowIcon from "assets/icon/DownArrowIcon";
 import { useAppDispatch } from "../../../hooks/useAppStore";
 import { pushDataStockDays } from "store/reducers/booksSlice/booksSlice";
 
-function createData(id: number, body: string) {
-  return { id, body };
+function createData(id: number, body: string, title: string) {
+  return { id, body, title };
 }
-const data = [
-  createData(1, "РЦ"),
-  createData(2, "МСКС"),
-  createData(3, "Самара"),
-];
+const data = [createData(1, "РЦ", "rc"), createData(2, "МСКС", "msks")];
 
 const MenuMUI = styled(Menu)({
   maxWidth: "400px",
@@ -86,6 +82,7 @@ const StyledMenu = styled((props: MenuProps) => (
 
 const HeaderMenu = () => {
   const dispatch = useAppDispatch();
+  const [titleMenu, setTitleMenu] = useState<string>("Склад отгрузки");
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -95,14 +92,16 @@ const HeaderMenu = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const handleClickMenu = (id: number) => {
-    dispatch(pushDataStockDays(id));
+  const handleClickMenu = (title: string, body: string) => {
+    dispatch(pushDataStockDays(title));
+    setTitleMenu(body);
     setAnchorEl(null);
   };
 
   return (
     <div>
       <ButtonMUI
+        sx={{ width: "177px", padding: "0px 0px" }}
         id="demo-customized-button"
         aria-controls={open ? "demo-customized-menu" : undefined}
         aria-haspopup="true"
@@ -110,7 +109,7 @@ const HeaderMenu = () => {
         variant="contained"
         disableElevation
         onClick={handleClick}>
-        Склад отгрузки
+        {titleMenu}
         <Box sx={{ margin: " 0px 0px 5px 5px " }}>
           {open ? <UpArrowIcon /> : <DownArrowIcon />}
         </Box>
@@ -123,7 +122,7 @@ const HeaderMenu = () => {
         {data.map((item) => (
           <MenuItem
             key={item.id}
-            onClick={() => handleClickMenu(item.id)}
+            onClick={() => handleClickMenu(item.title, item.body)}
             disableRipple>
             {item.body}
           </MenuItem>

@@ -8,29 +8,29 @@ export interface IStore {
 }
 
 export interface IdataItem {
+  "3": number;
+  "4": number;
+  "5": number;
+  "6": number;
+  "7": number;
+  "8": number;
   vendor_code: string;
   delivery_type: string;
   product_type: string;
-  title: string;
+  name: string;
   barcode: string;
-  march: string;
-  april: string;
-  may: string;
-  june: string;
-  july: string;
-  august: string;
   abc_segment: string;
-  sales_month: string;
-  current_sales_fbo: string;
-  current_sales_fbs: string;
-  samara: string;
-  remainder_mckc: string;
-  remainder_rc: string;
-  ads: string;
-  current_idc: string;
-  delivery_cost: string;
-  adjustment_cost: string;
-  manual_delivery_cost: string;
-  shop_price: string;
-  сomments: string;
+  fbo: number;
+  fbs: number;
+  sold_this_month: number;
+  stock: number;
+  msks: number;
+  rc: number;
+  ads: number;
+  ids: number;
+  smart_order_auto: number;
+  smart_order_correct: number;
+  manual_delivery: number;
+  price: string;
+  comment: string;
 }

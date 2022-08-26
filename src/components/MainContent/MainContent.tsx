@@ -10,6 +10,42 @@ import styled from "@emotion/styled";
 
 import { useAppSelector } from "../../hooks/useAppStore";
 import { MainContentObj } from "./MainContentObj";
+import MainContentItem from "./MainContentItem";
+import { Box } from "@mui/material";
+
+const MainContent = () => {
+  const { data, error } = useAppSelector((state) => state.TABLE);
+
+  return (
+    <>
+      {data.result.length > 1 && (
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            {error}
+            <TableHead>
+              <TableRow>
+                {MainContentObj.map((title, index) => (
+                  <TableCellUI key={index}>{title}</TableCellUI>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data?.result.map((rowItem, index) => (
+                <>
+                  <MainContentItem
+                    key={rowItem.vendor_code}
+                    index={index}
+                    rowItem={rowItem}
+                  />
+                </>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
+    </>
+  );
+};
 
 const TableCellUI = styled(TableCell)({
   [`&.${tableCellClasses.head}`]: {
@@ -35,71 +71,5 @@ const TableCellUI = styled(TableCell)({
     padding: " 12px 5px 4px",
   },
 });
-const TableRowUI = styled(TableRow)({
-  "&::first-of-type": {
-    borderTop: "1px solid white",
-  },
-  "&:last-child td, &:last-child th": {
-    borderRight: "1px solid #AAAAAA",
-    borderBottom: "none",
-  },
-});
-
-const MainContent = () => {
-  const { data, isLoading, error } = useAppSelector((state) => state.TABLE);
-
-  if (isLoading) {
-    <h1>Loading...</h1>;
-  }
-  return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        {error}
-        <TableHead>
-          <TableRow>
-            {MainContentObj.map((title, index) => (
-              <TableCellUI key={index}>{title}</TableCellUI>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.result.map((i) => (
-            <TableRowUI
-              key={i.vendor_code}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-              <TableCellUI component="th" scope="i">
-                {i.vendor_code}
-              </TableCellUI>
-              <TableCellUI>{i.delivery_type}</TableCellUI>
-              <TableCellUI>{i.product_type}</TableCellUI>
-              <TableCellUI>{i.title}</TableCellUI>
-              <TableCellUI>{i.barcode}</TableCellUI>
-              <TableCellUI align="right">{i.march}</TableCellUI>
-              <TableCellUI align="right">{i.april}</TableCellUI>
-              <TableCellUI align="right">{i.may}</TableCellUI>
-              <TableCellUI align="right">{i.june}</TableCellUI>
-              <TableCellUI align="right">{i.july}</TableCellUI>
-              <TableCellUI align="right">{i.august}</TableCellUI>
-              <TableCellUI align="right">{i.abc_segment}</TableCellUI>
-              <TableCellUI align="right">{i.sales_month}</TableCellUI>
-              <TableCellUI align="right">{i.current_sales_fbo}</TableCellUI>
-              <TableCellUI align="right">{i.current_sales_fbs}</TableCellUI>
-              <TableCellUI align="right">{i.samara}</TableCellUI>
-              <TableCellUI align="right">{i.remainder_mckc}</TableCellUI>
-              <TableCellUI align="right">{i.remainder_rc}</TableCellUI>
-              <TableCellUI align="right">{i.ads}</TableCellUI>
-              <TableCellUI align="right">{i.current_idc}</TableCellUI>
-              <TableCellUI align="right">{i.delivery_cost}</TableCellUI>
-              <TableCellUI align="right">{i.adjustment_cost}</TableCellUI>
-              <TableCellUI align="right">{i.manual_delivery_cost}</TableCellUI>
-              <TableCellUI align="right">{i.shop_price}</TableCellUI>
-              <TableCellUI align="right">{i.сomments}</TableCellUI>
-            </TableRowUI>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
-};
 
 export default React.memo(MainContent);
