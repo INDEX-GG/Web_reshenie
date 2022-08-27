@@ -7,7 +7,7 @@ export const getDataThunk = createAsyncThunk(
   async ({ resultKode }: any, thunkAPI) => {
     try {
       const response = await webReshenieAxios.get<IdataItem[]>(
-        `/api/table/upload/?code=${resultKode}`,
+        `/api/table/upload/?code=${resultKode}&page=1`,
       );
       return response.data;
     } catch (error) {

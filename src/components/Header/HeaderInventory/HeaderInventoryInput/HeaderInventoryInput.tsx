@@ -6,8 +6,34 @@ import { pushDataStock } from "store/reducers/booksSlice/booksSlice";
 import { useAppDispatch } from "../../../../hooks/useAppStore";
 
 const InputMUI = styled(Input)({
+  padding: "0",
+  "&:hover": {
+    "&:not(.Mui-disabled)": {
+      "&:before": {
+        borderBottom: "none",
+      },
+    },
+  },
+  "&:after": {
+    borderBottom: "none",
+  },
+  "&:hover:not:before": {
+    borderBottom: "none",
+  },
+  "&::before": {
+    border: "none",
+  },
+
   "& .MuiInput-input": {
+    padding: "0",
+    height: "35px",
     textAlign: "center",
+    "&::after": {
+      borderBottom: "none",
+    },
+    "&::before": {
+      border: "none",
+    },
   },
 });
 
@@ -29,6 +55,7 @@ const HeaderInventoryInput = () => {
         render={({ field: { value, onChange } }) => {
           return (
             <InputMUI
+              type="number"
               value={value}
               onChange={(e) => onChengeState(e, onChange)}
             />
