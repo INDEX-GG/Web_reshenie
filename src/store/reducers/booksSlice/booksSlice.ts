@@ -4,7 +4,7 @@ interface IInitialState {
   marketplace: string;
   stock_days: string;
   stock: string;
-  // table: any;
+  remainder: FileList[];
   marketplace_stock: string;
 }
 
@@ -12,7 +12,7 @@ const initialState: IInitialState = {
   marketplace: "yandex",
   stock_days: "",
   stock: "",
-  // table: "",
+  remainder: [],
   marketplace_stock: "samara",
 };
 
@@ -29,9 +29,9 @@ const booksSlice = createSlice({
     pushDataStock(state, action: PayloadAction<string>) {
       state.stock = action.payload;
     },
-    // pushDataTable(state, action: PayloadAction<any>) {
-    //   state.table = action.payload;
-    // },
+    pushRemainder(state, action) {
+      state.remainder = action.payload;
+    },
   },
   extraReducers: {},
 });
@@ -39,7 +39,7 @@ export const {
   pushDataMarketplace,
   pushDataStockDays,
   pushDataStock,
-  // pushDataTable,
+  pushRemainder,
 } = booksSlice.actions;
 
 export default booksSlice;

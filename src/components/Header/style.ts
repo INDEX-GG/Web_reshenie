@@ -16,7 +16,7 @@ export const useHeaderStyle = () => {
     display: "flex",
   }));
   const HeaderLeftMUI = styled("div")(({ theme }) => ({
-    width: "30%",
+    width: "20%",
     display: "flex",
     justifyContent: "center",
     [theme.breakpoints.between(0, 1500)]: {
@@ -24,7 +24,7 @@ export const useHeaderStyle = () => {
     },
   }));
   const HeaderCenterMUI = styled("div")(({ theme }) => ({
-    width: "40%",
+    width: "80%",
     display: "flex",
     justifyContent: "space-evenly",
     alignItems: "center",
@@ -33,7 +33,7 @@ export const useHeaderStyle = () => {
     },
   }));
   const HeaderRightMUI = styled("div")(({ theme }) => ({
-    width: "30%",
+    width: "20%",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
