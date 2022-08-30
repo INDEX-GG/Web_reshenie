@@ -3,13 +3,17 @@ import { IdataItem } from "types/types";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import styled from "@emotion/styled";
 import { TableRow } from "@mui/material";
-import MainContentSubtitle from "./MainContentSubtitle";
 import { useAppSelector } from "../../hooks/useAppStore";
-
 interface IMainContentItemProps {
   rowItem: IdataItem;
   index: number;
 }
+const TableLeftMUI = styled("div")({
+  // position: "absolute",
+});
+const TableRightMUI = styled("div")({
+  // position: "absolute",
+});
 
 const MainContentItem = ({ rowItem, index }: IMainContentItemProps) => {
   // console.log(rowItem);
@@ -25,61 +29,108 @@ const MainContentItem = ({ rowItem, index }: IMainContentItemProps) => {
     return array;
   }, [rowItem]);
 
-  console.log(columnItemArray, rowItem);
+  // console.log(columnItemArray, rowItem);
 
   return (
-    <TableRowUI sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-      <MainContentSubtitle
-        value={rowItem.vendor_code}
-        rowItem={rowItem}
-        TableCellProps={{ component: "th", scope: "i" }}
-      />
-      <MainContentSubtitle value={rowItem.delivery_type} rowItem={rowItem} />
-      <MainContentSubtitle value={rowItem.product_type} rowItem={rowItem} />
-      <MainContentSubtitle value={rowItem.name} rowItem={rowItem} />
-      <MainContentSubtitle value={rowItem.barcode} rowItem={rowItem} />
-      <MainContentSubtitle value={rowItem[3]} rowItem={rowItem} />
-      <MainContentSubtitle value={rowItem[4]} rowItem={rowItem} />
-      <MainContentSubtitle value={rowItem[5]} rowItem={rowItem} />
-      <MainContentSubtitle value={rowItem[6]} rowItem={rowItem} />
-      <MainContentSubtitle value={rowItem[7]} rowItem={rowItem} />
-      <MainContentSubtitle value={rowItem[8]} rowItem={rowItem} />
-      <MainContentSubtitle value={rowItem.abc_segment} rowItem={rowItem} />
-      <MainContentSubtitle value={rowItem.sold_this_month} rowItem={rowItem} />
-      <MainContentSubtitle value={rowItem.fbo} rowItem={rowItem} />
-      <MainContentSubtitle value={rowItem.fbs} rowItem={rowItem} />
-      <MainContentSubtitle value={rowItem.stock} rowItem={rowItem} />
-      <MainContentSubtitle value={rowItem.msks} rowItem={rowItem} />
-      <MainContentSubtitle value={rowItem.rc} rowItem={rowItem} />
-      <MainContentSubtitle value={rowItem.ads} rowItem={rowItem} />
-      <MainContentSubtitle value={rowItem.ids} rowItem={rowItem} />
-      <MainContentSubtitle value={rowItem.smart_order_auto} rowItem={rowItem} />
-      <MainContentSubtitle
-        value={rowItem.smart_order_correct}
-        rowItem={rowItem}
-      />
-      <MainContentSubtitle value={rowItem.manual_delivery} rowItem={rowItem} />
-      <MainContentSubtitle value={rowItem.price} rowItem={rowItem} />
-      <MainContentSubtitle value={rowItem.comment} rowItem={rowItem} />
+    <TableRowUI>
+      {/* <TableLeftMUI> */}
+      <TableCell100MUI>{rowItem.vendor_code}</TableCell100MUI>
+      <TableCell100MUI>{rowItem.delivery_type}</TableCell100MUI>
+      <TableCell100MUI>{rowItem.product_type} </TableCell100MUI>
+      <TableCell150MUI>{rowItem.name} </TableCell150MUI>
+      <TableCell130MUI>{rowItem.barcode} </TableCell130MUI>
+      {/* </TableLeftMUI>
+      <TableRightMUI> */}
+      <TableCell70MUI>{rowItem[0]}</TableCell70MUI>
+      <TableCell70MUI>{rowItem[1]}</TableCell70MUI>
+      <TableCell70MUI>{rowItem[2]}</TableCell70MUI>
+      <TableCell70MUI>{rowItem[3]}</TableCell70MUI>
+      <TableCell70MUI>{rowItem[4]}</TableCell70MUI>
+      <TableCell70MUI>{rowItem[5]}</TableCell70MUI>
+      <TableCell100MUI>{rowItem.abc_segment}</TableCell100MUI>
+      <TableCell100MUI>{rowItem.sold_this_month}</TableCell100MUI>
+      <TableCell70MUI>{rowItem.fbo}</TableCell70MUI>
+      <TableCell70MUI>{rowItem.fbs}</TableCell70MUI>
+      <TableCell70MUI>{rowItem.stock}</TableCell70MUI>
+      <TableCell70MUI>{rowItem.msks}</TableCell70MUI>
+      <TableCell70MUI>{rowItem.rc}</TableCell70MUI>
+      <TableCell70MUI>{rowItem.ads}</TableCell70MUI>
+      <TableCell100MUI>{rowItem.ids}</TableCell100MUI>
+      <TableCell100MUI>{rowItem.smart_order_auto}</TableCell100MUI>
+      <TableCell70MUI>{rowItem.smart_order_correct}</TableCell70MUI>
+      <TableCell100MUI>{rowItem.manual_delivery}</TableCell100MUI>
+      <TableCell100MUI>{rowItem.price}</TableCell100MUI>
+      <TableCell100MUI>{rowItem.comment}</TableCell100MUI>
 
       {index === 0 && (
         <>
-          <TableCell>{data.adjustment_cost}</TableCell>
-          <TableCell>{data.delivery_cost}</TableCell>
-          <TableCell>{data.manual_delivery_cost}</TableCell>
+          <TableCell70MUI>{data.adjustment_cost}</TableCell70MUI>
+          <TableCell70MUI>{data.delivery_cost}</TableCell70MUI>
+          <TableCell70MUI>{data.manual_delivery_cost}</TableCell70MUI>
         </>
       )}
+      {/* </TableRightMUI> */}
     </TableRowUI>
   );
 };
 
 const TableRowUI = styled(TableRow)({
+  // position: "relative",
+  // display: "flex",
   "&::first-of-type": {
     borderTop: "1px solid white",
   },
   "&:last-child td, &:last-child th": {
     borderRight: "1px solid #AAAAAA",
     borderBottom: "none",
+  },
+});
+const TableCell70MUI = styled(TableCell)({
+  [`&.${tableCellClasses.body}`]: {
+    minWidth: "70px",
+    maxWidth: "71px",
+    fontSize: "14px",
+    borderRight: "1px solid #AAAAAA",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    padding: " 12px 5px 4px",
+  },
+});
+const TableCell100MUI = styled(TableCell)({
+  [`&.${tableCellClasses.body}`]: {
+    minWidth: "100px",
+    maxWidth: "100px",
+    fontSize: "14px",
+    borderRight: "1px solid #AAAAAA",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    padding: " 12px 5px 4px",
+  },
+});
+const TableCell130MUI = styled(TableCell)({
+  [`&.${tableCellClasses.body}`]: {
+    minWidth: "130px",
+    maxWidth: "130px",
+    fontSize: "14px",
+    borderRight: "1px solid #AAAAAA",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    padding: " 12px 5px 4px",
+  },
+});
+const TableCell150MUI = styled(TableCell)({
+  [`&.${tableCellClasses.body}`]: {
+    minWidth: "150px",
+    maxWidth: "150px",
+    fontSize: "14px",
+    borderRight: "1px solid #AAAAAA",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    padding: " 12px 5px 4px",
   },
 });
 

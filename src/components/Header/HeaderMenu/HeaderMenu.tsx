@@ -8,6 +8,7 @@ import UpArrowIcon from "assets/icon/UpArrowIcon";
 import DownArrowIcon from "assets/icon/DownArrowIcon";
 import { useAppDispatch } from "../../../hooks/useAppStore";
 import { pushDataStockDays } from "store/reducers/booksSlice/booksSlice";
+import { useFormContext } from "react-hook-form";
 
 function createData(id: number, body: string, title: string) {
   return { id, body, title };
@@ -83,6 +84,7 @@ const StyledMenu = styled((props: MenuProps) => (
 const HeaderMenu = () => {
   const dispatch = useAppDispatch();
   const [titleMenu, setTitleMenu] = useState<string>("Склад отгрузки");
+  const { register, setValue } = useFormContext();
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -94,6 +96,7 @@ const HeaderMenu = () => {
   };
   const handleClickMenu = (title: string, body: string) => {
     dispatch(pushDataStockDays(title));
+    setValue("marketplace_stock", title);
     setTitleMenu(body);
     setAnchorEl(null);
   };

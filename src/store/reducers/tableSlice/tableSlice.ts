@@ -8,6 +8,7 @@ interface IInitialState {
     delivery_cost: number | null;
     adjustment_cost: number | null;
     manual_delivery_cost: number | null;
+    months: number[];
   };
   isLoading: boolean;
   error: string;
@@ -19,6 +20,7 @@ const initialState: IInitialState = {
     delivery_cost: null,
     adjustment_cost: null,
     manual_delivery_cost: null,
+    months: [],
   },
   isLoading: false,
   error: "",

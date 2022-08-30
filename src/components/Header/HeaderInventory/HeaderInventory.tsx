@@ -20,6 +20,7 @@ const HeaderInventoryTypography = styled(Typography)(({ theme }) => ({
     fontSize: "16px",
   },
 }));
+
 const HeaderInventory = () => {
   return (
     <HeaderInventoryWrap>

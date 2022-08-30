@@ -7,68 +7,105 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import styled from "@emotion/styled";
-
 import { useAppSelector } from "../../hooks/useAppStore";
-import { MainContentObj } from "./MainContentObj";
 import MainContentItem from "./MainContentItem";
-import { Box } from "@mui/material";
 
 const MainContent = () => {
   const { data, error } = useAppSelector((state) => state.TABLE);
-
+  const newMonths: string[] = data.months.map((item) => {
+    switch (item) {
+      case 1:
+        return "Январь";
+      case 2:
+        return "Февраль";
+      case 3:
+        return "Март";
+      case 4:
+        return "Апрель";
+      case 5:
+        return "Май";
+      case 6:
+        return "Июнь";
+      case 7:
+        return "Июль";
+      case 8:
+        return "Август";
+      case 9:
+        return "Сентябрь";
+      case 10:
+        return "Октябрь";
+      case 11:
+        return "Ноябрь";
+      case 12:
+        return "Декабрь";
+      default:
+        return "";
+    }
+  });
   return (
     <>
-      {data.result.length > 1 && (
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            {error}
-            <TableHead>
-              <TableRow>
-                {MainContentObj.map((title, index) => (
-                  <TableCellUI key={index}>{title}</TableCellUI>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data?.result.map((rowItem, index) => (
-                <>
-                  <MainContentItem
-                    key={rowItem.vendor_code}
-                    index={index}
-                    rowItem={rowItem}
-                  />
-                </>
+      {/* {data.result.length > 1 && ( */}
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          {error}
+          <TableHead sx={{ sxTableHead }}>
+            <TableRow>
+              <TableCellMUI>Артикул</TableCellMUI>
+              <TableCellMUI>Тип Доставки</TableCellMUI>
+              <TableCellMUI>Тип товара</TableCellMUI>
+              <TableCellMUI>Название</TableCellMUI>
+              <TableCellMUI>Штрихкод</TableCellMUI>
+              {newMonths?.map((month, index) => (
+                <TableCellMUI key={index}>{month}</TableCellMUI>
               ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      )}
+              <TableCellMUI>ABC Segment (beta)</TableCellMUI>
+              <TableCellMUI>Продажи в текущем месяце</TableCellMUI>
+              <TableCellMUI>Текущие продажи(FBO)</TableCellMUI>
+              <TableCellMUI>Текущие продажи(FBS)</TableCellMUI>
+              <TableCellMUI>Самара</TableCellMUI>
+              <TableCellMUI>Остаток МСКС (шт)</TableCellMUI>
+              <TableCellMUI>Остаток РЦ (шт)</TableCellMUI>
+              <TableCellMUI>ADS</TableCellMUI>
+              <TableCellMUI>Текущий IDC (по складу в днях)</TableCellMUI>
+              <TableCellMUI>Умный заказ, шт. (авто-чески)</TableCellMUI>
+              <TableCellMUI>Умный заказ, шт. (Корректировка)</TableCellMUI>
+              <TableCellMUI>Ручная поставка</TableCellMUI>
+              <TableCellMUI>Цена</TableCellMUI>
+              <TableCellMUI>Комментарии</TableCellMUI>
+              <TableCellMUI>Стоимость поставки</TableCellMUI>
+              <TableCellMUI>Стоимость корректировки</TableCellMUI>
+              <TableCellMUI>Стоимость ручной поставки</TableCellMUI>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data?.result.map((rowItem, index) => (
+              <>
+                <MainContentItem
+                  key={rowItem.vendor_code}
+                  index={index}
+                  rowItem={rowItem}
+                />
+              </>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      {/* )} */}
     </>
   );
 };
-
-const TableCellUI = styled(TableCell)({
+const sxTableHead = {
+  position: "fixed",
+};
+const TableCellMUI = styled(TableCell)({
   [`&.${tableCellClasses.head}`]: {
     color: "#AAAAAA",
     fontWeight: "500",
     fontSize: "14px",
     lineHeight: "100%",
-    padding: "0px",
+    padding: "0px 5px 0px",
     textAlign: "center",
     borderBottom: "1px solid white",
-    minWidth: "110px",
-    maxWidth: "170px",
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: "14px",
-    borderRight: "1px solid #AAAAAA",
-
-    minWidth: "110px",
-    maxWidth: "170px",
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
-    padding: " 12px 5px 4px",
   },
 });
 
