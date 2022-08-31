@@ -7,38 +7,42 @@ import HeaderInventory from "./HeaderInventory/HeaderInventory";
 import HeaderDownload from "./HeaderDownload/HeaderDownload";
 import HeaderUnloading from "./HeaderUnloading/HeaderUnloading";
 import { useHeaderStyle } from "./style";
-import { FormProvider, useForm } from "react-hook-form";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch } from "../../hooks/useAppStore";
 import TestBody from "./TestBody/TestBody";
 import HeaderDownAttributes from "./HeaderDownAttributes/HeaderDownAttributes";
 import HeaderDownRemainder from "./HeaderDownRemainder/HeaderDownRemainder";
+import { postBooksThunk } from "store/reducers/tableSlice/tableSliceAPI/tableSliceAPI";
 
-interface IData {
+export interface IPostData {
   marketplace: string;
   stock_days: string;
   our_stock: string;
   marketplace_stock: string;
-  stock_table: File;
-  products_table: File;
+  stock_table: File | null;
+  products_table: File | null;
 }
 
 const Header = () => {
   const dispatch = useAppDispatch();
-  const methods = useForm();
-  const onSubmit = async (data: IData) => {
-    const formData = new FormData();
-    formData.append("marketplace", data.marketplace);
-    formData.append("stock_days", data.stock_days);
-    formData.append("our_stock", data.our_stock);
-    formData.append("marketplace_stock", data.marketplace_stock);
-    formData.append("stock_table", data.stock_table);
-    formData.append("products_table", data.products_table);
-    console.log(formData);
+
+  const methods = useForm<IPostData>({
+    defaultValues: {
+      marketplace: "yandex",
+      stock_days: "0",
+      our_stock: "rc",
+      marketplace_stock: "samara",
+      stock_table: null,
+      products_table: null,
+    },
+  });
+  const onSubmit: SubmitHandler<IPostData> = async (data) => {
+    dispatch(postBooksThunk(data));
   };
 
   return (
-    <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)}>
+    <form onSubmit={methods.handleSubmit(onSubmit)}>
+      <FormProvider {...methods}>
         <AppBar position="static">
           <Toolbar sx={{ background: "white" }}>
             <HeaderWrapMUI>
@@ -46,9 +50,9 @@ const Header = () => {
                 <HeaderTabPanel />
               </HeaderLeftMUI>
               <HeaderCenterMUI>
-                <TestBody />
                 <HeaderInventory />
                 <HeaderMenu />
+                <TestBody />
                 <HeaderDownAttributes />
                 <HeaderDownRemainder />
               </HeaderCenterMUI>
@@ -59,8 +63,8 @@ const Header = () => {
             </HeaderWrapMUI>
           </Toolbar>
         </AppBar>
-      </form>
-    </FormProvider>
+      </FormProvider>
+    </form>
   );
 };
 const { HeaderWrapMUI, HeaderLeftMUI, HeaderCenterMUI, HeaderRightMUI } =

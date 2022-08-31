@@ -13,13 +13,12 @@ const IconSX = {
   },
 };
 const ContainerTitleMUI = styled("div")({
-  width: "120px",
-  heigth: "20px",
+  width: "125px",
   overflow: "hidden",
   marginLeft: "15px",
   "& > p": {
     overflow: "hidden",
-    height: "20px",
+    height: "25px",
     whiteSpace: "nowrap",
     textOverflow: "ellipsis",
   },

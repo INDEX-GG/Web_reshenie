@@ -7,7 +7,6 @@ export interface IStore {
   extra: AxiosInstance;
 }
 export interface IMonths {
-  // months: {
   1?: number;
   2?: number;
   3?: number;
@@ -20,11 +19,9 @@ export interface IMonths {
   10?: number;
   11?: number;
   12?: number;
-  // };
 }
 
 export interface IdataItem {
-  // months: IMonths[];
   "0": number;
   "1": number;
   "2": number;
@@ -50,4 +47,12 @@ export interface IdataItem {
   manual_delivery: number;
   price: string;
   comment: string;
+  status?: string;
+}
+
+export interface WaitCalculateData {
+  result: {
+    // ...more
+    status: "waiting";
+  };
 }
