@@ -9,6 +9,7 @@ import Paper from "@mui/material/Paper";
 import styled from "@emotion/styled";
 import { useAppSelector } from "../../hooks/useAppStore";
 import MainContentItem from "./MainContentItem";
+import { CircularProgress } from "@mui/material";
 
 const MainContent = () => {
   const { data, error } = useAppSelector((state) => state.TABLE);
@@ -42,6 +43,7 @@ const MainContent = () => {
         return "";
     }
   });
+
   return (
     <>
       {/* {data.result.length > 1 && ( */}
@@ -49,7 +51,7 @@ const MainContent = () => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           {error}
           <TableHead sx={{ sxTableHead }}>
-            <TableRow>
+            {/* <TableRow>
               <TableCellMUI>Артикул</TableCellMUI>
               <TableCellMUI>Тип Доставки</TableCellMUI>
               <TableCellMUI>Тип товара</TableCellMUI>
@@ -75,22 +77,30 @@ const MainContent = () => {
               <TableCellMUI>Стоимость поставки</TableCellMUI>
               <TableCellMUI>Стоимость корректировки</TableCellMUI>
               <TableCellMUI>Стоимость ручной поставки</TableCellMUI>
-            </TableRow>
+            </TableRow> */}
           </TableHead>
           <TableBody>
-            {data?.result.map((rowItem, index) => (
-              <>
-                <MainContentItem
-                  key={rowItem.vendor_code}
-                  index={index}
-                  rowItem={rowItem}
-                />
-              </>
-            ))}
+            {/* {data.result?.map((rowItem, index) => (
+              <MainContentItem
+                key={rowItem.vendor_code}
+                index={index}
+                rowItem={rowItem}
+              />
+            ))} */}
           </TableBody>
         </Table>
       </TableContainer>
       {/* )} */}
+      {data.result.status && (
+        <CircularProgress
+          sx={{
+            position: "relative",
+            top: "0%",
+            left: "50%",
+            marginTop: "20%",
+          }}
+        />
+      )}
     </>
   );
 };

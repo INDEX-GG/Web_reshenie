@@ -7,7 +7,6 @@ import { Box } from "@mui/system";
 import UpArrowIcon from "assets/icon/UpArrowIcon";
 import DownArrowIcon from "assets/icon/DownArrowIcon";
 import { useAppDispatch } from "../../../hooks/useAppStore";
-import { pushDataStockDays } from "store/reducers/booksSlice/booksSlice";
 import { useFormContext } from "react-hook-form";
 
 function createData(id: number, body: string, title: string) {
@@ -82,7 +81,6 @@ const StyledMenu = styled((props: MenuProps) => (
 }));
 
 const HeaderMenu = () => {
-  const dispatch = useAppDispatch();
   const [titleMenu, setTitleMenu] = useState<string>("Склад отгрузки");
   const { register, setValue } = useFormContext();
 
@@ -95,8 +93,7 @@ const HeaderMenu = () => {
     setAnchorEl(null);
   };
   const handleClickMenu = (title: string, body: string) => {
-    dispatch(pushDataStockDays(title));
-    setValue("marketplace_stock", title);
+    setValue("our_stock", title);
     setTitleMenu(body);
     setAnchorEl(null);
   };

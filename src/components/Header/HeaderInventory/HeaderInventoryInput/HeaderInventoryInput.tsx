@@ -1,8 +1,8 @@
 import { Input } from "@mui/material";
 import { styled } from "@mui/system";
-import React from "react";
-import { useFormContext } from "react-hook-form";
-
+import React, { ChangeEvent } from "react";
+import { Controller, useFormContext } from "react-hook-form";
+import { checkOnlyNumber } from "lib/services";
 const InputMUI = styled(Input)({
   padding: "0",
   "&:hover": {
@@ -36,8 +36,30 @@ const InputMUI = styled(Input)({
 });
 
 const HeaderInventoryInput = () => {
-  const { register } = useFormContext();
-  return <InputMUI type="number" {...register("stock_days")} />;
+  const { control } = useFormContext();
+  const handleChange = (onChange: (state: string) => void) => {
+    return (e: ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      const onlyNumber = checkOnlyNumber(value);
+      if (onlyNumber || !value) {
+        onChange(value);
+      }
+    };
+  };
+
+  return (
+    <Controller
+      name="stock_days"
+      control={control}
+      render={({ field: { value, onChange } }) => (
+        <InputMUI
+          type="number"
+          value={value}
+          onChange={handleChange(onChange)}
+        />
+      )}
+    />
+  );
 };
 
 export default React.memo(HeaderInventoryInput);

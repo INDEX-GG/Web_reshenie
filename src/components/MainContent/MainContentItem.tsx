@@ -4,32 +4,20 @@ import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import styled from "@emotion/styled";
 import { TableRow } from "@mui/material";
 import { useAppSelector } from "../../hooks/useAppStore";
+
 interface IMainContentItemProps {
   rowItem: IdataItem;
   index: number;
 }
-const TableLeftMUI = styled("div")({
-  // position: "absolute",
-});
-const TableRightMUI = styled("div")({
-  // position: "absolute",
-});
+// const TableLeftMUI = styled("div")({
+//   // position: "absolute",
+// });
+// const TableRightMUI = styled("div")({
+//   // position: "absolute",
+// });
 
 const MainContentItem = ({ rowItem, index }: IMainContentItemProps) => {
-  // console.log(rowItem);
   const { data } = useAppSelector((state) => state.TABLE);
-
-  const columnItemArray = useMemo(() => {
-    const array: { value: string; rowItem: IdataItem }[] = [];
-    if (typeof rowItem === "object") {
-      for (const [_, value] of Object.entries(rowItem)) {
-        array.push({ value, rowItem });
-      }
-    }
-    return array;
-  }, [rowItem]);
-
-  // console.log(columnItemArray, rowItem);
 
   return (
     <TableRowUI>

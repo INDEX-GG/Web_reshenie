@@ -1,8 +1,6 @@
 import * as React from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import { useAppDispatch } from "../../../hooks/useAppStore";
-import { pushDataMarketplace } from "store/reducers/booksSlice/booksSlice";
 import { styled } from "@mui/system";
 import { useFormContext } from "react-hook-form";
 
@@ -12,14 +10,12 @@ const TabMUI = styled(Tab)({
 });
 
 const HeaderTabPanel = () => {
-  const dispatch = useAppDispatch();
   const { setValue } = useFormContext();
   const [value, setTabsValue] = React.useState("yandex");
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue("marketplace", newValue);
     setTabsValue(newValue);
-    dispatch(pushDataMarketplace(newValue));
   };
 
   return (
