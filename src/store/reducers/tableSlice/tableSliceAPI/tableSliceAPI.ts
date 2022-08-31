@@ -1,4 +1,4 @@
-import { IStore } from "./../../../../types/types";
+import { IStore, WaitCalculateData } from "./../../../../types/types";
 import { webReshenieAxios } from "./../../../../lib/http/index";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { IdataItem } from "types/types";
@@ -6,17 +6,21 @@ import { IPostData } from "components/Header/Header";
 
 export const getDataThunk = createAsyncThunk(
   "tableSlice/getData",
-  async ({ resultCode }: any, thunkAPI) => {
+  async ({ resultCode }: any, { dispatch, rejectWithValue }) => {
     try {
-      const response = await webReshenieAxios.get<IdataItem[]>(
-        `/api/table/upload/?code=${resultCode}&page=1`,
-      );
-      console.log(response.data);
+      const response = await webReshenieAxios.get<
+        IdataItem[] | WaitCalculateData
+      >(`/api/table/upload/?code=${resultCode}&page=1`);
+      if ("result" in response.data) {
+        if (response.data.result.status === "waiting") {
+          dispatch(getDataThunk({ resultCode }));
+          return {};
+        }
+      }
+
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(
-        "code does not exist, code not specified",
-      );
+      return rejectWithValue("code does not exist, code not specified");
     }
   },
 );

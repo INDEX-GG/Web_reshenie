@@ -16,7 +16,7 @@ interface IDataTableWaiting {
 
 interface IInitialState {
   data: {
-    result: IDataTableWaiting;
+    result: IdataItem[] | { status: string };
     delivery_cost: number | null;
     adjustment_cost: number | null;
     manual_delivery_cost: number | null;
@@ -29,10 +29,7 @@ interface IInitialState {
 
 const initialState: IInitialState = {
   data: {
-    result: {
-      marketplace: "",
-      status: "",
-    },
+    result: [],
     delivery_cost: null,
     adjustment_cost: null,
     manual_delivery_cost: null,
@@ -62,5 +59,22 @@ const tableSlice = createSlice({
       },
     );
   },
+  // extraReducers: {
+  //   [getDataThunk.fulfilled.type](state, action) {
+  //     state.data = action.payload;
+  //     state.isLoading = false;
+  //   },
+  //   [getDataThunk.pending.type](state) {
+  //     state.isLoading = true;
+  //   },
+  //   [getDataThunk.rejected.type](state, action: PayloadAction<string>) {
+  //     state.error = action.payload;
+  //     state.isLoading = false;
+  //     console.log("malformed data");
+  //   },
+  //   [postBooksThunk.fulfilled.type](state, action: PayloadAction<string>) {
+  //     state.resultCode = action.payload;
+  //   },
+  // },
 });
 export default tableSlice;

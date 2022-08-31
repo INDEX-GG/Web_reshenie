@@ -13,45 +13,48 @@ import { CircularProgress } from "@mui/material";
 
 const MainContent = () => {
   const { data, error } = useAppSelector((state) => state.TABLE);
-  const newMonths: string[] = data.months.map((item) => {
-    switch (item) {
-      case 1:
-        return "Январь";
-      case 2:
-        return "Февраль";
-      case 3:
-        return "Март";
-      case 4:
-        return "Апрель";
-      case 5:
-        return "Май";
-      case 6:
-        return "Июнь";
-      case 7:
-        return "Июль";
-      case 8:
-        return "Август";
-      case 9:
-        return "Сентябрь";
-      case 10:
-        return "Октябрь";
-      case 11:
-        return "Ноябрь";
-      case 12:
-        return "Декабрь";
-      default:
-        return "";
-    }
-  });
+  console.log(data);
+  const newMonths: string[] =
+    "months" in data
+      ? data?.months.map((item) => {
+          switch (item) {
+            case 1:
+              return "Январь";
+            case 2:
+              return "Февраль";
+            case 3:
+              return "Март";
+            case 4:
+              return "Апрель";
+            case 5:
+              return "Май";
+            case 6:
+              return "Июнь";
+            case 7:
+              return "Июль";
+            case 8:
+              return "Август";
+            case 9:
+              return "Сентябрь";
+            case 10:
+              return "Октябрь";
+            case 11:
+              return "Ноябрь";
+            case 12:
+              return "Декабрь";
+            default:
+              return "";
+          }
+        })
+      : [];
 
   return (
     <>
-      {/* {data.result.length > 1 && ( */}
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           {error}
           <TableHead sx={{ sxTableHead }}>
-            {/* <TableRow>
+            <TableRow>
               <TableCellMUI>Артикул</TableCellMUI>
               <TableCellMUI>Тип Доставки</TableCellMUI>
               <TableCellMUI>Тип товара</TableCellMUI>
@@ -77,21 +80,21 @@ const MainContent = () => {
               <TableCellMUI>Стоимость поставки</TableCellMUI>
               <TableCellMUI>Стоимость корректировки</TableCellMUI>
               <TableCellMUI>Стоимость ручной поставки</TableCellMUI>
-            </TableRow> */}
+            </TableRow>
           </TableHead>
           <TableBody>
-            {/* {data.result?.map((rowItem, index) => (
-              <MainContentItem
-                key={rowItem.vendor_code}
-                index={index}
-                rowItem={rowItem}
-              />
-            ))} */}
+            {Array.isArray(data.result) &&
+              data.result.map((rowItem, index) => (
+                <MainContentItem
+                  key={rowItem.vendor_code}
+                  index={index}
+                  rowItem={rowItem}
+                />
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
-      {/* )} */}
-      {data.result.status && (
+      {"status" in data.result && data.result.status && (
         <CircularProgress
           sx={{
             position: "relative",

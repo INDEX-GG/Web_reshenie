@@ -49,3 +49,10 @@ export interface IdataItem {
   comment: string;
   status?: string;
 }
+
+export interface WaitCalculateData {
+  result: {
+    // ...more
+    status: "waiting";
+  };
+}
