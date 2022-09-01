@@ -101,7 +101,12 @@ const HeaderMenu = () => {
   return (
     <div>
       <ButtonMUI
-        sx={{ width: "177px", padding: "0px 0px" }}
+        sx={{
+          width: "177px",
+          padding: "0px 0px",
+          textTransform: "none",
+          fontSize: "16px",
+        }}
         id="demo-customized-button"
         aria-controls={open ? "demo-customized-menu" : undefined}
         aria-haspopup="true"
@@ -111,7 +116,7 @@ const HeaderMenu = () => {
         onClick={handleClick}>
         {titleMenu}
         <Box sx={{ margin: " 0px 0px 5px 5px " }}>
-          {open ? <UpArrowIcon /> : <DownArrowIcon />}
+          {open ? <DownArrowIcon /> : <UpArrowIcon />}
         </Box>
       </ButtonMUI>
       <StyledMenu

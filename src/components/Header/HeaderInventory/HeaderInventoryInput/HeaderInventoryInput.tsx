@@ -4,7 +4,7 @@ import React, { ChangeEvent } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { checkOnlyNumber } from "lib/services";
 const InputMUI = styled(Input)({
-  padding: "0",
+  padding: "0 0 0 7px",
   "&:hover": {
     "&:not(.Mui-disabled)": {
       "&:before": {

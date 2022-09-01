@@ -13,6 +13,7 @@ import TestBody from "./TestBody/TestBody";
 import HeaderDownAttributes from "./HeaderDownAttributes/HeaderDownAttributes";
 import HeaderDownRemainder from "./HeaderDownRemainder/HeaderDownRemainder";
 import { postBooksThunk } from "store/reducers/tableSlice/tableSliceAPI/tableSliceAPI";
+import HeaderButtonYandex from "./HeaderButtonYandex/HeaderButtonYandex";
 
 export interface IPostData {
   marketplace: string;
@@ -50,11 +51,13 @@ const Header = () => {
                 <HeaderTabPanel />
               </HeaderLeftMUI>
               <HeaderCenterMUI>
-                <HeaderInventory />
                 <HeaderMenu />
+                <HeaderInventory />
+                {/*  */}
                 <TestBody />
                 <HeaderDownAttributes />
                 <HeaderDownRemainder />
+                <HeaderButtonYandex />
               </HeaderCenterMUI>
               <HeaderRightMUI>
                 <HeaderDownload />

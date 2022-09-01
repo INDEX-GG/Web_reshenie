@@ -13,9 +13,9 @@ const ButtonUnloading = styled(Button)(({ theme }) => ({
 }));
 const HeaderUnloading = () => {
   return (
-    <ButtonUnloading variant="contained">
+    <ButtonUnloading variant="contained" sx={{ textTransform: "none" }}>
       <UnloadIcon />
-      <Box sx={{ marginLeft: "5px" }}>Сохранить</Box>
+      <Box sx={{ marginLeft: "5px", fontSize: "16px" }}>Сохранить</Box>
     </ButtonUnloading>
   );
 };

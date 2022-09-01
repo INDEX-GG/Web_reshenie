@@ -14,7 +14,10 @@ const ButtonDownload = styled(Button)(({ theme }) => ({
 
 const HeaderDownload = () => {
   return (
-    <ButtonDownload variant="contained" type="submit">
+    <ButtonDownload
+      variant="contained"
+      type="submit"
+      sx={{ textTransform: "none", fontSize: "16px" }}>
       Отправить
     </ButtonDownload>
   );

@@ -15,10 +15,7 @@ const HeaderInventoryTypography = styled(Typography)(({ theme }) => ({
   marginRight: "10px",
   color: "#AAAAAA",
   fontWeight: "500",
-  fontSize: "18px",
-  [theme.breakpoints.down(1400)]: {
-    fontSize: "16px",
-  },
+  fontSize: "16px",
 }));
 
 const HeaderInventory = () => {

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import { IdataItem } from "types/types";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import styled from "@emotion/styled";
@@ -9,26 +9,16 @@ interface IMainContentItemProps {
   rowItem: IdataItem;
   index: number;
 }
-// const TableLeftMUI = styled("div")({
-//   // position: "absolute",
-// });
-// const TableRightMUI = styled("div")({
-//   // position: "absolute",
-// });
-
 const MainContentItem = ({ rowItem, index }: IMainContentItemProps) => {
   const { data } = useAppSelector((state) => state.TABLE);
 
   return (
     <TableRowUI>
-      {/* <TableLeftMUI> */}
       <TableCell100MUI>{rowItem.vendor_code}</TableCell100MUI>
       <TableCell100MUI>{rowItem.delivery_type}</TableCell100MUI>
       <TableCell100MUI>{rowItem.product_type} </TableCell100MUI>
       <TableCell150MUI>{rowItem.name} </TableCell150MUI>
       <TableCell130MUI>{rowItem.barcode} </TableCell130MUI>
-      {/* </TableLeftMUI>
-      <TableRightMUI> */}
       <TableCell70MUI>{rowItem[0]}</TableCell70MUI>
       <TableCell70MUI>{rowItem[1]}</TableCell70MUI>
       <TableCell70MUI>{rowItem[2]}</TableCell70MUI>
@@ -57,14 +47,11 @@ const MainContentItem = ({ rowItem, index }: IMainContentItemProps) => {
           <TableCell70MUI>{data.manual_delivery_cost}</TableCell70MUI>
         </>
       )}
-      {/* </TableRightMUI> */}
     </TableRowUI>
   );
 };
 
 const TableRowUI = styled(TableRow)({
-  // position: "relative",
-  // display: "flex",
   "&::first-of-type": {
     borderTop: "1px solid white",
   },

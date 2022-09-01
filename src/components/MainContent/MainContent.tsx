@@ -14,9 +14,10 @@ import { CircularProgress } from "@mui/material";
 const MainContent = () => {
   const { data, error } = useAppSelector((state) => state.TABLE);
   console.log(data);
+
   const newMonths: string[] =
     "months" in data
-      ? data?.months.map((item) => {
+      ? data.months.map((item) => {
           switch (item) {
             case 1:
               return "Январь";

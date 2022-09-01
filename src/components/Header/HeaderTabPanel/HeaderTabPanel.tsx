@@ -20,7 +20,11 @@ const HeaderTabPanel = () => {
 
   return (
     <Tabs value={value} onChange={handleChange}>
-      <TabMUI value="yandex" label="Яндекс" />
+      <TabMUI
+        value="yandex"
+        label="Яндекс"
+        sx={{ textTransform: "none", fontSize: "16px" }}
+      />
       <TabMUI value="ozon" label="OZON" />
     </Tabs>
   );
