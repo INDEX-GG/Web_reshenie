@@ -16,7 +16,7 @@ interface IDataTableWaiting {
 
 interface IInitialState {
   data: {
-    result: IdataItem[] | { status: string };
+    result: IdataItem[];
     delivery_cost: number | null;
     adjustment_cost: number | null;
     manual_delivery_cost: number | null;

@@ -32,7 +32,6 @@ const HeaderDownRemainder = () => {
     event: ChangeEvent<HTMLInputElement>,
   ) => {
     const { files } = event.target;
-    console.log(files);
     if (files?.length) {
       const fileList: File[] = Array.from(files);
       setValue("stock_table", fileList[0]);

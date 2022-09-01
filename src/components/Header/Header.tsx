@@ -53,8 +53,6 @@ const Header = () => {
               <HeaderCenterMUI>
                 <HeaderMenu />
                 <HeaderInventory />
-                {/*  */}
-                <TestBody />
                 <HeaderDownAttributes />
                 <HeaderDownRemainder />
                 <HeaderButtonYandex />

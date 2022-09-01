@@ -48,6 +48,7 @@ export interface IdataItem {
   price: string;
   comment: string;
   status?: string;
+  marketplace?: string;
 }
 
 export interface WaitCalculateData {

@@ -10,10 +10,11 @@ import styled from "@emotion/styled";
 import { useAppSelector } from "../../hooks/useAppStore";
 import MainContentItem from "./MainContentItem";
 import { CircularProgress } from "@mui/material";
+import ProductType from "components/Sorting/ProductType/ProductType";
 
 const MainContent = () => {
-  const { data, error } = useAppSelector((state) => state.TABLE);
-  console.log(data);
+  const { data } = useAppSelector((state) => state.TABLE);
+  // console.log(data);
 
   const newMonths: string[] =
     "months" in data
@@ -51,51 +52,7 @@ const MainContent = () => {
 
   return (
     <>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          {error}
-          <TableHead sx={{ sxTableHead }}>
-            <TableRow>
-              <TableCellMUI>Артикул</TableCellMUI>
-              <TableCellMUI>Тип Доставки</TableCellMUI>
-              <TableCellMUI>Тип товара</TableCellMUI>
-              <TableCellMUI>Название</TableCellMUI>
-              <TableCellMUI>Штрихкод</TableCellMUI>
-              {newMonths?.map((month, index) => (
-                <TableCellMUI key={index}>{month}</TableCellMUI>
-              ))}
-              <TableCellMUI>ABC Segment (beta)</TableCellMUI>
-              <TableCellMUI>Продажи в текущем месяце</TableCellMUI>
-              <TableCellMUI>Текущие продажи(FBO)</TableCellMUI>
-              <TableCellMUI>Текущие продажи(FBS)</TableCellMUI>
-              <TableCellMUI>Самара</TableCellMUI>
-              <TableCellMUI>Остаток МСКС (шт)</TableCellMUI>
-              <TableCellMUI>Остаток РЦ (шт)</TableCellMUI>
-              <TableCellMUI>ADS</TableCellMUI>
-              <TableCellMUI>Текущий IDC (по складу в днях)</TableCellMUI>
-              <TableCellMUI>Умный заказ, шт. (авто-чески)</TableCellMUI>
-              <TableCellMUI>Умный заказ, шт. (Корректировка)</TableCellMUI>
-              <TableCellMUI>Ручная поставка</TableCellMUI>
-              <TableCellMUI>Цена</TableCellMUI>
-              <TableCellMUI>Комментарии</TableCellMUI>
-              <TableCellMUI>Стоимость поставки</TableCellMUI>
-              <TableCellMUI>Стоимость корректировки</TableCellMUI>
-              <TableCellMUI>Стоимость ручной поставки</TableCellMUI>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {Array.isArray(data.result) &&
-              data.result.map((rowItem, index) => (
-                <MainContentItem
-                  key={rowItem.vendor_code}
-                  index={index}
-                  rowItem={rowItem}
-                />
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      {"status" in data.result && data.result.status && (
+      {"status" in data.result ? (
         <CircularProgress
           sx={{
             position: "relative",
@@ -104,6 +61,52 @@ const MainContent = () => {
             marginTop: "20%",
           }}
         />
+      ) : (
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead sx={{ sxTableHead }}>
+              <TableRow>
+                <TableCellMUI>Артикул</TableCellMUI>
+                <TableCellMUI>Тип Доставки</TableCellMUI>
+                <TableCellMUI>
+                  <ProductType />
+                </TableCellMUI>
+                <TableCellMUI>Название</TableCellMUI>
+                <TableCellMUI>Штрихкод</TableCellMUI>
+                {newMonths?.map((month, index) => (
+                  <TableCellMUI key={index}>{month}</TableCellMUI>
+                ))}
+                <TableCellMUI>ABC Segment (beta)</TableCellMUI>
+                <TableCellMUI>Продажи в текущем месяце</TableCellMUI>
+                <TableCellMUI>Текущие продажи(FBO)</TableCellMUI>
+                <TableCellMUI>Текущие продажи(FBS)</TableCellMUI>
+                <TableCellMUI>Самара</TableCellMUI>
+                <TableCellMUI>Остаток МСКС (шт)</TableCellMUI>
+                <TableCellMUI>Остаток РЦ (шт)</TableCellMUI>
+                <TableCellMUI>ADS</TableCellMUI>
+                <TableCellMUI>Текущий IDC (по складу в днях)</TableCellMUI>
+                <TableCellMUI>Умный заказ, шт. (авто-чески)</TableCellMUI>
+                <TableCellMUI>Умный заказ, шт. (Корректировка)</TableCellMUI>
+                <TableCellMUI>Ручная поставка</TableCellMUI>
+                <TableCellMUI>Цена</TableCellMUI>
+                <TableCellMUI>Комментарии</TableCellMUI>
+                <TableCellMUI>Стоимость поставки</TableCellMUI>
+                <TableCellMUI>Стоимость корректировки</TableCellMUI>
+                <TableCellMUI>Стоимость ручной поставки</TableCellMUI>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {Array.isArray(data.result) &&
+                data.result.map((rowItem, index) => (
+                  <MainContentItem
+                    key={rowItem.vendor_code}
+                    index={index}
+                    rowItem={rowItem}
+                  />
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       )}
     </>
   );
